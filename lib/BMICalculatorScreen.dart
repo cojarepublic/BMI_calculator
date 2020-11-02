@@ -9,6 +9,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   double _heightOfUser = 100.0;
   double _weightOfUser = 60.0;
 
+  double _bmi = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,9 +111,14 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                 ),
                 Container(
                     child: FlatButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _bmi = _weightOfUser/((_heightOfUser/100)*(_heightOfUser/100));
+                            print(_bmi);
+                          });
+                        },
                         icon: Icon(Icons.favorite, color: Colors.white,),
-                        label: Text('CALCULATE BMI'),
+                        label: Text('CALCULATE'),
                       textColor: Colors.white,
                     ),
                 color: Colors.pink,)
