@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_test/BMI_class.dart';
 
 class BMICalculatorScreen extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
   double _weightOfUser = 60.0;
 
   double _bmi = 0;
+
+  BMIModel _bmiModel;
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +117,15 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                         onPressed: () {
                           setState(() {
                             _bmi = _weightOfUser/((_heightOfUser/100)*(_heightOfUser/100));
-                            print(_bmi);
+                            if (_bmi >= 18.5 && _bmi <= 25) {
+                              _bmiModel = BMIModel(bmi: _bmi, isNormal: true, comments: 'You are fit!');
+                            }else if (_bmi < 18.5) {
+                              _bmiModel = BMIModel(bmi: _bmi, isNormal: false, comments: 'You are underweight!');
+                            }else if (_bmi > 25 && _bmi <= 30) {
+                              _bmiModel = BMIModel(bmi: _bmi, isNormal: false, comments: 'You are overweight!');
+                            }else {
+                              _bmiModel = BMIModel(bmi: _bmi, isNormal: false, comments: 'You are obese!');
+                            }
                           });
                         },
                         icon: Icon(Icons.favorite, color: Colors.white,),
