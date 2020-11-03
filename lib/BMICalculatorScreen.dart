@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_test/BMI_class.dart';
+import 'package:flutter_app_test/resultscreen.dart';
 
 class BMICalculatorScreen extends StatefulWidget {
   @override
@@ -127,6 +128,7 @@ class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
                               _bmiModel = BMIModel(bmi: _bmi, isNormal: false, comments: 'You are obese!');
                             }
                           });
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ResultScreen(bmiModel: _bmiModel,)));
                         },
                         icon: Icon(Icons.favorite, color: Colors.white,),
                         label: Text('CALCULATE'),
